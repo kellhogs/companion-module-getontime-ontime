@@ -8,8 +8,10 @@ enum ActionCommand {
 	StartId = 'startid',
 	StartIndex = 'startindex',
 	StartNext = 'start-next',
+	StartCue = 'startcue',
 	LoadId = 'loadid',
 	LoadIndex = 'loadindex',
+	LoadCue = 'loadcue',
 	Pause = 'pause',
 	Stop = 'stop',
 	Reload = 'reload',
@@ -98,6 +100,20 @@ export function actions(self: OnTimeInstance): CompanionActionDefinitions {
 				socketSendJson(ActionCommand.StartId, action.options.value)
 			},
 		},
+		[ActionId.StartCue]: {
+			name: 'Start event with cue ID',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Event Cue ID',
+					id: 'value',
+					required: true,
+				},
+			],
+			callback: (action) => {
+				socketSendJson(ActionCommand.StartCue, action.options.value)
+			},
+		},
 		[ActionId.LoadId]: {
 			name: 'Load event with given ID',
 			options: [
@@ -144,6 +160,20 @@ export function actions(self: OnTimeInstance): CompanionActionDefinitions {
 			],
 			callback: (action) => {
 				socketSendJson(ActionCommand.LoadIndex, action.options.value)
+			},
+		},
+		[ActionId.LoadCue]: {
+			name: 'Load event with cue ID',
+			options: [
+				{
+					type: 'textinput',
+					label: 'Event Cue ID',
+					id: 'value',
+					required: true,
+				},
+			],
+			callback: (action) => {
+				socketSendJson(ActionCommand.LoadCue, action.options.value)
 			},
 		},
 		[ActionId.Pause]: {
